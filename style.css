@@ -1,0 +1,642 @@
+:root {
+  --viewport: 500;
+  /* -----font----- */
+  --zen-maru-gothic: "Zen Maru Gothic", sans-serif;
+  --zen-kaku-gothic: "Zen Kaku Gothic New", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+  /* -----size----- */
+  --font-size: 10px;
+  --wide-main: 500px;
+  /* --------other-------- */
+  --clover-dec-radius: 0.2rem;
+  --under-dashed: 0.25rem dashed var(--red);
+  --btn-radius: 3rem;
+  /* 丸みを強くして親しみやすく */
+  --btn-shadow: drop-shadow(0 0.5rem 0.5rem rgba(0, 0, 0, 0.2));
+
+  /* ------------------ONE-TECH Custom---------------- */
+  --font-family: var(--zen-maru-gothic);
+  /* ---mono-color--- */
+  --white: #fff;
+  --black: #333;
+  --text-color: #4a4a4a;
+
+  /* Actias Blue Theme */
+  --red: #0082c9;
+  --pink-light: #f0f8ff;
+  --pink-bg: #e0f7fa;
+  --orange: #0082c9;
+  /* Cyan Blue Accent - Using main brand color for consistency */
+
+  /* ---gradation-color--- */
+  --main-grad: linear-gradient(135deg, #0082c9, #00a0e9);
+  --btn-color: linear-gradient(90deg, #00a0e9, #0082c9);
+}
+
+/* responsive-setting */
+@media screen and (max-width: 500px) {
+  :root {
+    --font-size: calc(100vw * 10 / var(--viewport));
+    --wide-main: 100vw;
+  }
+}
+
+/* -----------base-------------- */
+html {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
+
+body {
+  width: 100%;
+  height: auto;
+  background-color: var(--pink-light);
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#main {
+  width: var(--wide-main);
+  background-color: var(--white);
+  position: relative;
+  opacity: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+#main.active {
+  opacity: 1;
+  transition: 1s;
+}
+
+/* btn */
+.btn {
+  display: block;
+  width: calc(var(--wide-main) * 0.85);
+  height: auto;
+  background: var(--btn-color);
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  font-weight: var(--font-weight-bold);
+  font-size: 2rem;
+  margin: 0 auto;
+  border-radius: var(--btn-radius);
+  filter: var(--btn-shadow);
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* -----------footer-------------- */
+footer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-bottom: 8rem;
+  /* バナー分空ける量を少し減らす */
+  background-color: #333;
+  color: #fff;
+  padding-top: 1.5rem;
+}
+
+.copy {
+  font-weight: var(--font-weight-regular);
+  font-size: 1.2rem;
+  margin-bottom: 4rem;
+}
+
+/* -----------foot-banner----------- */
+.foot-banner {
+  width: var(--wide-main);
+  height: 6rem;
+  /* 縦に伸びすぎないように高さを抑える */
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  position: fixed;
+  bottom: -10rem;
+  /* 初期位置 */
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: 0.5s;
+  opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  /* ロゴとボタンを縦中央に配置 */
+  z-index: 100;
+}
+
+.foot-banner.active {
+  opacity: 1;
+  bottom: 0rem;
+}
+
+.foot-banner-item {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foot-banner-item.btn {
+  width: 55%;
+  font-size: 1.6rem;
+  padding: 1rem;
+  height: auto;
+  margin: 0;
+}
+
+/* oooooooooooooooooooooooo */
+/* 全体共通 */
+/* oooooooooooooooooooooooo */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+section {
+  width: 100%;
+  margin-bottom: 6rem;
+}
+
+/* oooooooooooooooooooooooo */
+/* TOPセクション*/
+/* oooooooooooooooooooooooo */
+#top {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-bottom: 0rem;
+}
+
+/* メインビジュアル */
+.top-img {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.top-img-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.top-img-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 画像の上にフィルターをかける */
+.top-img-back::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%);
+}
+
+.top-logo-img {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 20;
+}
+
+.logo-img {
+  height: 3rem;
+  width: auto;
+  display: block;
+}
+
+/* 下部バナー内のロゴはバナーの高さにフィットさせる */
+.foot-banner .logo-img {
+  height: 3.5rem;
+  /* ボタンとバランスが取れるくらいの高さ */
+  max-height: 100%;
+}
+
+/* キャッチコピー */
+.top-catch-copy {
+  position: absolute;
+  bottom: 0rem;
+  left: 2rem;
+  z-index: 10;
+}
+
+.top-catch-copy p {
+  font-size: 3.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--red);
+  line-height: 1.2;
+  text-shadow: 2px 2px 0 #fff;
+}
+
+/* サブタイトル帯 */
+.top-sub-title {
+  position: relative;
+  width: 100%;
+  z-index: 5;
+  margin: -2rem 0 3rem 0;
+  background: var(--main-grad);
+  padding: 2rem;
+  text-align: center;
+  transform: skewY(-3deg);
+  /* 斜めにする */
+}
+
+.top-sub-title-main {
+  color: var(--white);
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.6;
+  transform: skewY(3deg);
+  /* 文字は戻す */
+}
+
+/* メッセージエリア全体 */
+.message-main {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* oooooooooooooooooooooooo */
+/* おすすめセクション (Recommend) */
+/* oooooooooooooooooooooooo */
+#recommend {
+  padding: 0 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-sub {
+  color: var(--orange);
+  font-weight: bold;
+  font-family: var(--zen-kaku-gothic);
+  letter-spacing: 0.1em;
+}
+
+.section-title-text {
+  font-size: 2.6rem;
+  color: var(--black);
+  line-height: 1.3;
+}
+
+/* ポイントリスト */
+.point-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.point-item {
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.point-img img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.point-text {
+  padding: 2rem;
+}
+
+/* 数字アイコン */
+.num-icon {
+  width: 4rem;
+  height: auto;
+  margin-right: 1rem;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
+.point-text h4 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--black);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.point-text p {
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+/* oooooooooooooooooooooooo */
+/* 募集要項 (Recruit) */
+/* oooooooooooooooooooooooo */
+.recruit {
+  padding: 0 1rem;
+}
+
+.section-title-wrapper {
+  background: var(--black);
+  padding: 1rem 2rem;
+  width: fit-content;
+  border-radius: 0 2rem 2rem 0;
+  margin-bottom: 2rem;
+  margin-left: -1rem;
+}
+
+.section-title-text-simple {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.recruit-items {
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.recruit-item {
+  display: block;
+  padding: 2rem 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.recruit-item:last-child {
+  border-bottom: none;
+}
+
+.recruit-item h4 {
+  color: var(--red);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.recruit-item h4::before {
+  content: '●';
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.recruit-item ul li {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: var(--black);
+}
+
+.map iframe {
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  height: 200px;
+  display: block;
+}
+
+/* CTAエリア */
+.last-btn {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+}
+
+.sub-cta-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 4rem;
+}
+
+
+
+/* 代表メッセージセクション */
+#ceo-message {
+  padding: 0;
+  margin-bottom: 6rem;
+  text-align: center;
+}
+
+.ceo-img-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#ceo-message .section-header {
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+/* スケジュールセクション */
+#schedule {
+  padding: 0;
+  text-align: center;
+}
+
+/* Duplicate .ceo-img-wrapper removed */
+
+
+/* --- 3列（サンドイッチ）レイアウト設定 --- */
+/* Revised Version */
+
+.message-sandwich {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  /* 必要以上に広がらないように制限 */
+  margin: 0 auto 1.5rem;
+  /* 下の余白を少し広めに */
+  gap: 0;
+  /* ★重要：Flexboxの隙間はゼロにする */
+}
+
+/* 画像エリアの設定 */
+.sandwich-img {
+  width: 28%;
+  /* 画像を少し大きめに確保 */
+  max-width: 140px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+.sandwich-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+  /* 影をつけて立体感を出す */
+}
+
+/* ★ポイント：ネガティブマージンでテキストに寄せ、一体感を出す */
+.left-pos {
+  margin-right: -2rem;
+  /* 右（テキスト側）に食い込ませる */
+  z-index: 1;
+  /* テキストより後ろへ */
+}
+
+.left-pos img {
+  transform: rotate(-15deg);
+  /* 角度を少し強める */
+}
+
+.right-pos {
+  margin-left: -2rem;
+  /* 左（テキスト側）に食い込ませる */
+  z-index: 1;
+  /* テキストより後ろへ */
+}
+
+.right-pos img {
+  transform: rotate(15deg);
+  /* 角度を少し強める */
+}
+
+/* 中央テキストエリアの設定 */
+.sandwich-text {
+  flex-grow: 1;
+  z-index: 10;
+  /* ★画像を背景にするため、文字を最前面に */
+  position: relative;
+  min-width: 140px;
+  /* 文字がつぶれないように最小幅を確保 */
+}
+
+/* テキストの設定 */
+.message-heading {
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 0;
+  white-space: normal;
+  font-size: 1.3rem;
+  font-feature-settings: "palt";
+}
+
+.message-sub-text {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Emphasis Styles */
+.emphasis-orange {
+  color: #ff8c00;
+  /* Distinct orange for '仲間' */
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.emphasis-blue {
+  color: var(--red);
+  /* Using Actias blue */
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+
+/* --- PC・タブレット向けの調整（768px以上） --- */
+@media screen and (min-width: 768px) {
+  .message-sandwich {
+    gap: 1rem;
+    /* PCなら少し隙間があってもOK */
+  }
+
+  .left-pos {
+    margin-right: -1rem;
+  }
+
+  .right-pos {
+    margin-left: -1rem;
+  }
+
+  .message-heading {
+    font-size: 2.4rem;
+    line-height: 1.8;
+    white-space: nowrap;
+  }
+}
+
+/* リンク集セクション */
+#links {
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.link-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.link-btn:active {
+  transform: scale(0.98);
+}
+
+.link-btn.corporate {
+  background-color: #333;
+}
+
+.link-btn.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.link-btn span {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.arrow-icon {
+  font-style: normal;
+  font-weight: bold;
+}
