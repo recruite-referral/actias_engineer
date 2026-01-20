@@ -26,15 +26,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="reset.css" />
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L17PLNCK5X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-L17PLNCK5X');
-</script>
 
 
 <body>
@@ -269,12 +261,34 @@
       <div class="foot-banner-item">
         <img src="actias_logo.png" alt="actias ロゴ" class="logo-img">
       </div>
-      <a href="#" class="foot-banner-item btn" target="_blank">まずは話を聞いてみる</a>
+      <button id="openModalBtn" class="foot-banner-item btn">まずは話を聞いてみる</button>
+    </div>
+
+    <!-- Modal Window -->
+    <div id="entryModal" class="modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">×</button>
+
+        <div class="modal-header">
+          <h2 class="modal-title">ENTRY</h2>
+          <p class="modal-subtitle">ご希望の入り口を選択してください</p>
+        </div>
+
+        <div class="modal-buttons">
+          <a href="#" class="modal-btn new-graduate" target="_blank">
+            新卒の方
+          </a>
+
+          <a href="#" class="modal-btn mid-career" target="_blank">
+            既卒/中途の方
+          </a>
+        </div>
+      </div>
     </div>
   </main>
 
   <script src="script.js"></script>
 </body>
-
 
 </html>
